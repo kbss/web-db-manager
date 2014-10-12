@@ -1,0 +1,5 @@
+rootProject.name = 'web-db-manager'
+include ':db-manager-services',
+        ':db-manager-rest-api',
+        ':db-manager-rest',
+        ':db-manager-war'

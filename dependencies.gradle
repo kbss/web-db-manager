@@ -1,0 +1,80 @@
+def springVersion = '4.1.1.RELEASE'
+def springSecurityVersion = '3.2.5.RELEASE'
+def hibernateVersion = '4.3.6.Final'  
+def jerseyVersion = '2.13'
+def slf4jVersion = '1.7.7'
+def logbackVersion = '1.1.2'
+def javaxServletVersion = '2.5'
+
+subprojects {
+
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+
+    repositories {
+        mavenCentral() // mavenRepo url: "http://repo.maven.apache.org/maven2"
+        maven {url "http://repository.springsource.com/maven/bundles/release" }
+        maven {url "http://repository.springsource.com/maven/bundles/external" }
+        maven {url "https://maven.java.net/content/repositories/releases"}
+    }
+
+    dependencies {
+        compile group: 'org.slf4j', name: 'slf4j-api', version: "$slf4jVersion"
+        compile group: 'ch.qos.logback', name: 'logback-core', version: "$logbackVersion"
+        compile group: 'ch.qos.logback', name: 'logback-classic', version: "$logbackVersion"
+        compile group: 'org.slf4j', name: 'jcl-over-slf4j', version: "$slf4jVersion"
+    }
+
+    configurations {
+        all*.exclude group: 'org.logj4'
+        all*.exclude group: 'commons-logging'
+    }
+
+    configurations.all {
+        resolutionStrategy.cacheChangingModulesFor 24*30, 'hours' //30 days
+    }
+}
+
+
+
+project(':db-manager-services') {
+    dependencies {
+        compile project(':db-manager-rest-api')
+        compile group: 'org.springframework', name: 'spring-tx', version: "$springVersion"
+        compile group: 'org.springframework', name: 'spring-context-support', version: "$springVersion"
+        compile group: 'org.springframework.security', name: 'spring-security-core', version:"$springSecurityVersion"
+    }
+}
+
+project(':db-manager-rest-api') {
+    dependencies {
+        compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version:'2.0'
+        compile group: 'org.glassfish.jersey.ext', name: 'jersey-bean-validation', version:"$jerseyVersion"
+    }
+}
+
+project(':db-manager-rest') {
+    dependencies {
+        compile project(':db-manager-rest-api')
+        compile project(':db-manager-services')
+
+        compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version:"$jerseyVersion"
+        compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet-core', version:"$jerseyVersion"
+        compile group: 'org.springframework', name: 'spring-core', version:"$springVersion"
+        compile group: 'org.springframework', name: 'spring-context', version:"$springVersion"
+        compile group: 'org.springframework', name: 'spring-jdbc', version:"$springVersion"
+        compile group: 'org.springframework', name: 'spring-web', version:"$springVersion"
+        compile group: 'org.springframework.security', name: 'spring-security-core', version:"$springSecurityVersion"
+        compile group: 'org.springframework.security', name: 'spring-security-web', version:"$springSecurityVersion" 
+        compile group: 'org.springframework.security', name: 'spring-security-config', version:"$springSecurityVersion"
+    }
+}
+
+project(':db-manager-war') {
+
+    dependencies {
+        compile project(':db-manager-rest')
+        compile group: 'org.springframework', name: 'spring-web', version:"$springVersion"
+        compile group: 'org.springframework', name: 'spring-webmvc', version:"$springVersion"
+	}
+}

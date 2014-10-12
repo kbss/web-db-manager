@@ -1,0 +1,57 @@
+defaultTasks 'clean', 'build' 
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.1'
+}
+
+
+allprojects {
+    apply plugin: 'idea'
+    apply plugin: 'eclipse'
+    apply plugin: 'maven'
+
+    group = 'org.juke.webdb'
+    version = '0.1'
+}
+
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+	apply plugin: 'idea'
+
+    repositories {
+       mavenCentral()
+    }
+
+    dependencies {
+        testCompile 'junit:junit:4.8.2'
+    }
+
+    version = '1.0'
+
+    jar {
+        manifest.attributes provider: 'my cool company'
+    }
+}
+
+
+apply from: "dependencies.gradle"
+project(':db-manager-war') {
+    apply plugin: 'war'
+    apply plugin: 'jetty'
+
+
+    jettyRun {
+        tasks.jettyRun.contextPath = 'db-manger'
+        tasks.jettyRun.httpPort = 80
+        tasks.jettyRun.stopPort = 81
+        tasks.jettyRun.stopKey = 'stopKey'
+    }
+
+
+    war {
+        archiveName = "web-db-manager.war"
+    }
+}
+
