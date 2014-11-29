@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Serhii Krivtsov
  *
  */
-@XmlRootElement(name = "ConnectionInfoDto")
+@XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ConnectionInfoDto {
 
