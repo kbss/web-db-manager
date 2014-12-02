@@ -33,4 +33,22 @@ public class ManagerServiceImpl implements ManagerService {
         return null;
     }
 
+    @Override
+    public ConnectionInfoDto connect(String connectionId) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public void deleteConnection(String connectionId) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void saveConnection(ConnectionDto connection) {
+        // TODO Auto-generated method stub
+        
+    }
+
 }

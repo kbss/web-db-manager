@@ -31,6 +31,7 @@ public class DriverLoaderImpl implements DriverLoader {
 
     private static Logger logger = LoggerFactory.getLogger(DriverLoaderImpl.class);
 
+    //TODO: move to utility class (db-manager-utils module)
     private static void closeQuietly(Closeable closable) {
         if (closable != null) {
             try {

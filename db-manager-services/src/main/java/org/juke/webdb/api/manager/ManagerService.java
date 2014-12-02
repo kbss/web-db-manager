@@ -13,5 +13,11 @@ import org.juke.webdb.dto.QueryResultDto;
 public interface ManagerService {
     ConnectionInfoDto connect(ConnectionDto connection);
 
+    ConnectionInfoDto connect(String connectionId);
+
+    void deleteConnection(String connectionId);
+
     QueryResultDto execute(QueryDto query);
+
+    void saveConnection(ConnectionDto connection);
 }
