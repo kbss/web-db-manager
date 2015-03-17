@@ -13,13 +13,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class ColumnDto {
 
-    private Integer length;
+    private Integer columnSize;
     private String name;
     // TODO: enum
     private String type;
 
-    public Integer getLength() {
-        return length;
+    public Integer getColumnSize() {
+        return columnSize;
     }
 
     public String getName() {
@@ -30,8 +30,8 @@ public class ColumnDto {
         return type;
     }
 
-    public void setLength(Integer length) {
-        this.length = length;
+    public void setColumnSize(Integer columnSize) {
+        this.columnSize = columnSize;
     }
 
     public void setName(String name) {
@@ -40,5 +40,10 @@ public class ColumnDto {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "ColumnDto [columnSize=" + columnSize + ", name=" + name + ", type=" + type + "]";
     }
 }

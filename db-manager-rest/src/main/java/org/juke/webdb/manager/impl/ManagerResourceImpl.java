@@ -1,4 +1,4 @@
-package org.juke.webdb.spring.webdb.manager.impl;
+package org.juke.webdb.manager.impl;
 
 import org.juke.webdb.api.manager.ManagerService;
 import org.juke.webdb.dto.ConnectionDto;

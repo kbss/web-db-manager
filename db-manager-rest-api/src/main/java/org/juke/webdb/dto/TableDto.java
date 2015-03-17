@@ -19,6 +19,11 @@ public class TableDto {
     private Collection<ColumnDto> columns;
 
     private String name;
+    private String category;
+    private String schema;
+    public String getCategory() {
+        return category;
+    }
 
     public Collection<ColumnDto> getColumns() {
         if (columns == null) {
@@ -31,7 +36,28 @@ public class TableDto {
         return name;
     }
 
+    public String getSchema() {
+        return schema;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setColumns(Collection<ColumnDto> columns) {
+        this.columns = columns;
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setSchema(String schema) {
+        this.schema = schema;
+    }
+
+    @Override
+    public String toString() {
+        return "TableDto [columns=" + columns + ", name=" + name + ", category=" + category + ", schema=" + schema + "]";
     }
 }

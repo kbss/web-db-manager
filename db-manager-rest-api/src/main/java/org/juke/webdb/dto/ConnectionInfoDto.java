@@ -20,7 +20,7 @@ public class ConnectionInfoDto {
     private Collection<TableDto> tables;
     private String token;
 
-    public Collection<TableDto> getColumns() {
+    public Collection<TableDto> getTables() {
         if (tables == null) {
             tables = new ArrayList<TableDto>();
         }

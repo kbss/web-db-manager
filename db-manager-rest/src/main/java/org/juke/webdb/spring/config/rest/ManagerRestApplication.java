@@ -4,8 +4,8 @@ import org.glassfish.jersey.filter.LoggingFilter;
 import org.glassfish.jersey.jackson.JacksonFeature;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.server.ServerProperties;
+import org.juke.webdb.manager.impl.ManagerResourceImpl;
 import org.juke.webdb.spring.config.rest.exceptions.mapper.ThrowableMapper;
-import org.juke.webdb.spring.webdb.manager.impl.ManagerResourceImpl;
 import org.springframework.web.filter.RequestContextFilter;
 
 /**
