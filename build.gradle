@@ -50,11 +50,14 @@ project(':db-manager-war') {
     apply plugin: 'jetty'
     apply plugin: "com.moowork.gulp"
 
+
     jettyRun {
-        tasks.jettyRun.contextPath = 'db-manger'
+        dependsOn 'gulpBuildWithOpts'
+        tasks.jettyRun.contextPath = '/'
         tasks.jettyRun.httpPort = 8080
         tasks.jettyRun.stopPort = 8081
         tasks.jettyRun.stopKey = 'stopKey'
+        tasks.jettyRun.reload = 'manual'
     }
     task gulpBuildWithOpts(type: GulpTask) {
         doFirst {

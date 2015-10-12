@@ -120,5 +120,10 @@ gulp.task('cssmin', function () {
         .pipe(gulp.dest(dest))
 });
 
+gulp.task('watch', function () {
+    gulp.watch(['../webapp/css/**'], ['cssmin']);
+    gulp.watch('../webapp/js/**/*.js', ['concat-libs']);
+});
 
 gulp.task('default', ['concat-libs', 'cssmin', 'minify-html']);
+gulp.task('watch_only', ['watch']);

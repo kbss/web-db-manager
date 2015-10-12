@@ -6,7 +6,6 @@ webApp.directive('webappHeader',
             templateUrl: 'templates/header.html',
             replace: true,
             controller: ('webAppHeaderController', function ($scope) {
-
             })
         }
     }]

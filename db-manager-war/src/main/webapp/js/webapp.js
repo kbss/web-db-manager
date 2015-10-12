@@ -2,7 +2,7 @@
  * @author Serhii Kryvtsov
  * @since 03/07/2014.
  */
-var webApp = angular.module("webApp", ['ngRoute', 'webStorageModule', 'ngCookies', 'ngAnimate']).config(
+var webApp = angular.module("webApp", ['ngRoute', 'webStorageModule', 'ngCookies', 'ngAnimate', 'mc.resizer']).config(
     ['$locationProvider',
         function ($locationProvider) {
             $locationProvider.html5Mode(true);
