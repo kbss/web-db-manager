@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html id="ng-app" ng-app="webApp">
+<head prefix="og: http://ogp.me/ns#">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <meta http-equiv="cleartype" content="on">
+</head>
+
+<script type="text/javascript" src="js/config/historyPushStateRedirection.js"></script>
+<script type="text/javascript" src="js/config/setBaseAppLocation.js"></script>
+
+<!-- AngularJS -->
+<script type="text/javascript" src="js/libs/angular/angular.min.js"></script>
+<script type="text/javascript" src="js/libs/angular/angular-animate.min.js"></script>
+<script type="text/javascript" src="js/libs/angular/angular-route.min.js"></script>
+<script type="text/javascript" src="js/libs/angular/angular-sanitize.min.js"></script>
+<script type="text/javascript" src="js/libs/angular/angular-cookies.min.js"></script>
+<script type="text/javascript" src="js/libs/angular/angular-webstorage.min.js"></script>
+<script type="text/javascript" src="js/libs/angular/angular-cookies.min.js"></script>
+<script type="text/javascript" src="js/libs/angular/angular-animate.min.js"></script>
+<!--JQuery-->
+<script type="text/javascript" src="js/libs/jquery/jquery-1.11.3.min.js"></script>
+<!--Bootstrap-->
+<script type="text/javascript" src="js/libs/bootstrap/bootstrap.min.js"></script>
+
+
+<script type="text/javascript" src="js/webapp.js"></script>
+
+<!-- AngularJS Controllers -->
+<script type="text/javascript" src="js/controllers/LayoutController.js"></script>
+<script type="text/javascript" src="js/controllers/HomeController.js"></script>
+<script type="text/javascript" src="js/controllers/404Controller.js"></script>
+<!-- Directives -->
+<script type="text/javascript" src="js/directives/headerDirective.js"></script>
+<script type="text/javascript" src="js/directives/footerDirective.js"></script>
+<!-- Services -->
+<script type="text/javascript" src="js/services/GenericHttpService.js"></script>
+<script type="text/javascript" src="js/services/WebStorageService.js"></script>
+
+<!-- Interceptors -->
+<script type="text/javascript" src="js/interceptors/AuthInterceptor.js"></script>
+
+<body ng-controller="LayoutController">
+<main id="page" role="main">
+    <webapp-header></webapp-header>
+    <div ng-view autoscroll="true" ng-if="authorized"></div>
+</main>
+<webapp-footer></webapp-footer>
+</body>
+</html>

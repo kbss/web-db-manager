@@ -1,9 +1,17 @@
-defaultTasks 'clean', 'build' 
+defaultTasks 'clean', 'build'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.moowork.gradle:gradle-gulp-plugin:0.11'
+    }
+}
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.1'
 }
-
 
 allprojects {
     apply plugin: 'idea'
@@ -18,39 +26,63 @@ allprojects {
 subprojects {
     apply plugin: 'java'
     apply plugin: 'eclipse'
-	apply plugin: 'idea'
+    apply plugin: 'idea'
 
     repositories {
-       mavenCentral()
+        mavenCentral()
     }
 
     dependencies {
         testCompile 'junit:junit:4.8.2'
     }
 
-    version = '1.0'
+    version = '0.1'
 
     jar {
         manifest.attributes provider: 'my cool company'
     }
 }
 
-
+def nodeVersion = '4.1.2';
 apply from: "dependencies.gradle"
 project(':db-manager-war') {
     apply plugin: 'war'
     apply plugin: 'jetty'
-
+    apply plugin: "com.moowork.gulp"
 
     jettyRun {
         tasks.jettyRun.contextPath = 'db-manger'
-        tasks.jettyRun.httpPort = 80
-        tasks.jettyRun.stopPort = 81
+        tasks.jettyRun.httpPort = 8080
+        tasks.jettyRun.stopPort = 8081
         tasks.jettyRun.stopKey = 'stopKey'
     }
-
+    task gulpBuildWithOpts(type: GulpTask) {
+        doFirst {
+            println 'Gulp build...'
+        }
+        def gulpProjectDir = "src/main/gulp"
+        def gulpDestDir = "src/main/webapp/assets"
+        gulp_dist.inputs.dir new File(projectDir, gulpProjectDir)
+        gulp_dist.outputs.dir new File(project.buildDir, gulpDestDir)
+        gulp {
+            workDir = new File(projectDir, gulpProjectDir)
+            colors = true
+            bufferOutput = true
+        }
+        node {
+            // Version of node to use.
+            version = nodeVersion
+            // Enabled the automatic download. False is the; default (for now).
+            download = true
+            nodeModulesDir = new File(projectDir, gulpProjectDir)
+        }
+        dependsOn 'installGulp'
+        dependsOn 'npmInstall'
+        args = ["default"]
+    }
 
     war {
+        dependsOn 'gulpBuildWithOpts'
         archiveName = "web-db-manager.war"
     }
 }
