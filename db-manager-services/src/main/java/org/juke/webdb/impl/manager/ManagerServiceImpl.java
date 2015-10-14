@@ -7,14 +7,15 @@ import org.juke.webdb.dto.QueryDto;
 import org.juke.webdb.dto.QueryResultDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
+
+import javax.inject.Named;
+import javax.inject.Singleton;
 
 /**
- * 
  * @author Serhii Krivtsov
- *
  */
-@Service
+@Named
+@Singleton
 public class ManagerServiceImpl implements ManagerService {
 
     private Logger logger = LoggerFactory.getLogger(ManagerServiceImpl.class);
@@ -42,13 +43,13 @@ public class ManagerServiceImpl implements ManagerService {
     @Override
     public void deleteConnection(String connectionId) {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void saveConnection(ConnectionDto connection) {
         // TODO Auto-generated method stub
-        
+
     }
 
 }

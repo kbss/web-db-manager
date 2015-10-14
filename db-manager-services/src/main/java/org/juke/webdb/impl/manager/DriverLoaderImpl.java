@@ -1,5 +1,11 @@
 package org.juke.webdb.impl.manager;
 
+import org.juke.webdb.api.manager.DriverLoader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.inject.Named;
+import javax.inject.Singleton;
 import java.io.Closeable;
 import java.io.File;
 import java.io.IOException;
@@ -12,17 +18,13 @@ import java.util.Enumeration;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-import org.juke.webdb.api.manager.DriverLoader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
-
 /**
  * 
  * @author Serhii Krivtsov
  *
  */
-@Service
+@Named
+@Singleton
 public class DriverLoaderImpl implements DriverLoader {
 
     private static final String DRIVER_VERSION_TEMPLATE = "%s.%s";

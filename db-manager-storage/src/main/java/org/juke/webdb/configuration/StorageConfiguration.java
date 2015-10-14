@@ -1,6 +1,5 @@
 package org.juke.webdb.configuration;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +11,9 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.inject.Inject;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -23,8 +24,9 @@ import java.util.Properties;
 @Configuration
 @ComponentScan(basePackages = {"org.juke.webdb"}, scopeResolver = org.springframework.context.annotation.Jsr330ScopeMetadataResolver.class)
 @EnableJpaRepositories(basePackages = "org.juke.webdb", entityManagerFactoryRef = "entityManagerFactory", transactionManagerRef = "transactionManager")
+@EnableTransactionManagement
 public class StorageConfiguration {
-    @Autowired
+    @Inject
     private Environment env;
 
     @Bean
@@ -39,6 +41,7 @@ public class StorageConfiguration {
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         factoryBean.setDataSource(dataSource());
         factoryBean.setJpaVendorAdapter(jpaVendorAdapter);
+        factoryBean.setPersistenceUnitName("webdbPU");
         factoryBean.setPackagesToScan("org.juke.webdb");
         factoryBean.setJpaProperties(additionalProperties());
         return factoryBean;
@@ -54,10 +57,12 @@ public class StorageConfiguration {
                 setProperty("hibernate.connection.SetBigStringTryClob", "true");
                 setProperty("hibernate.temp.use_jdbc_metadata_defaults", "false");
                 setProperty("jadira.usertype.autoRegisterUserTypes", "true");
+                setProperty("javax.persistence.validation.mode", env.getProperty("web.db.jdbc.javax.persistence.validation.mode", "NONE"));
+                setProperty("jadira.usertype.databaseZone", env.getProperty("web.db.jadira.usertype.databaseZone", "jvm"));
+                setProperty("jadira.usertype.javaZone", env.getProperty("web.db.jadira.usertype.javaZone", "jvm"));
             }
         };
     }
-
 
     private DataSource dataSource() throws NamingException {
         String jndi = env.getProperty("web.db.jndi");

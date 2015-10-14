@@ -1,5 +1,6 @@
 package org.juke.webdb.jpa.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,16 +16,20 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "USER_TOKEN")
-public class UseToken {
+public class UserToken {
 
     @Id
     @Column(unique = true, nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long tokenId;
 
-    @ManyToOne
-    @JoinColumn(name = "USER_ID")
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "USER_ID", nullable = false)
     private User user;
+    @Column
+    private String token;
+    @Column
+    private Long expiration;
 
     public Long getTokenId() {
         return tokenId;
@@ -57,10 +62,4 @@ public class UseToken {
     public void setExpiration(Long expiration) {
         this.expiration = expiration;
     }
-
-    @Column
-    private String token;
-
-    @Column
-    private Long expiration;
 }

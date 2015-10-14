@@ -8,6 +8,8 @@ import org.juke.webdb.dto.QueryResultDto;
 import org.juke.webdb.resources.ManagerResource;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.inject.Inject;
+
 /**
  * 
  * @author Serhii Krivtsov
@@ -15,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class ManagerResourceImpl implements ManagerResource {
 
-    @Autowired
+    @Inject
     private ManagerService managerService;
 
     @Override

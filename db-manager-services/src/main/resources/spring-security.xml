@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://www.springframework.org/schema/security"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/security
+           http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+    <http realm="Protected API" use-expressions="true" auto-config="false"
+          entry-point-ref="customAuthenticationEntryPoint">
+        <custom-filter ref="authenticationTokenProcessingFilter" position="FORM_LOGIN_FILTER"/>
+        <intercept-url pattern="/services/account/login" method="POST" access="permitAll"/>
+        <intercept-url pattern="/services/account/logout" method="DELETE" access="permitAll"/>
+        <intercept-url pattern="/services/**" access="isAuthenticated()"/>
+    </http>
+    <beans:bean id="customAuthenticationEntryPoint"
+                class="org.juke.webdb.spring.config.CustomAuthenticationEntryPoint"/>
+    <beans:bean id="authenticationTokenProcessingFilter" class="org.juke.webdb.filters.AuthenticationFilter"/>
+</beans:beans>
