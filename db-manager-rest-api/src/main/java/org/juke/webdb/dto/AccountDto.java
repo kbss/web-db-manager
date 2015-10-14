@@ -7,9 +7,18 @@ package org.juke.webdb.dto;
 public class AccountDto {
 
     private Long userId;
+    private String email;
     private String externalId;
     private String password;
     private String token;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public Long getUserId() {
         return userId;

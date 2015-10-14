@@ -1,7 +1,7 @@
 angular.module('mc.resizer', []).directive('resizer', function ($document) {
 
     return function ($scope, $element, $attrs) {
-
+        var PX = 'px';
         $element.on('mousedown', function (event) {
             event.preventDefault();
 
@@ -11,7 +11,7 @@ angular.module('mc.resizer', []).directive('resizer', function ($document) {
 
         function mousemove(event) {
 
-            var PX = 'px';
+
             if ($attrs.resizer == 'vertical') {
                 // Handle vertical resizer
                 var x = event.pageX;
