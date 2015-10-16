@@ -1,5 +1,5 @@
 def springVersion = '4.2.1.RELEASE'
-def springSecurityVersion = '4.0.1.RELEASE'
+def springSecurityVersion = '4.0.2.RELEASE'
 def hibernateVersion = '4.3.11.Final'
 def jerseyVersion = '2.22.1'
 def slf4jVersion = '1.7.12'
