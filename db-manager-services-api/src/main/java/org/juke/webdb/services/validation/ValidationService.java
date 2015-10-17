@@ -1,5 +1,6 @@
 package org.juke.webdb.services.validation;
 
+import org.juke.webdb.dto.AccountDto;
 import org.juke.webdb.services.exceptions.ClientException;
 
 /**
@@ -8,4 +9,6 @@ import org.juke.webdb.services.exceptions.ClientException;
  */
 public interface ValidationService {
     void assertRequestNotEmpty(Object obj) throws ClientException;
+
+    void assertAccountCreationDtoValid(AccountDto accountDto) throws ClientException;
 }

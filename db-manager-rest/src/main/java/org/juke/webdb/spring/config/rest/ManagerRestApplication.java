@@ -12,7 +12,7 @@ import org.springframework.web.filter.RequestContextFilter;
 
 /**
  * @author Serhii Krivtsov
- * @since 12/10/2015
+ * @since 0.1
  */
 public class ManagerRestApplication extends ResourceConfig {
 
@@ -22,7 +22,6 @@ public class ManagerRestApplication extends ResourceConfig {
                 ThrowableMapper.class,
                 AccountResourceImpl.class
         );
-//        packages("org.juke.webdb.services.api.account");
         register(RequestContextFilter.class);
         register(JacksonJsonProvider.class);
         property(ServerProperties.BV_SEND_ERROR_IN_RESPONSE, true);

@@ -76,6 +76,7 @@ project(':db-manager-services') {
         //TODO: should be provided
         compile group: 'javax.servlet', name: 'servlet-api', version: "$javaxServletVersion"
         compile group: 'org.apache.commons', name: 'commons-lang3', version: "3.0"
+        compile group:  'commons-validator', name: 'commons-validator', version: "1.4.1"
 
     }
 }

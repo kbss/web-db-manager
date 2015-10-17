@@ -10,6 +10,7 @@
           entry-point-ref="customAuthenticationEntryPoint">
         <custom-filter ref="authenticationFilter" position="FORM_LOGIN_FILTER"/>
         <intercept-url pattern="/services/account/login" method="POST" access="permitAll"/>
+        <intercept-url pattern="/services/account/register" method="POST" access="permitAll"/>
         <intercept-url pattern="/services/account/logout" method="DELETE" access="permitAll"/>
         <intercept-url pattern="/services/**" access="isAuthenticated()"/>
     </http>

@@ -1,6 +1,7 @@
 package org.juke.webdb.jpa.dao;
 
 import org.juke.webdb.jpa.entities.User;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import javax.inject.Named;
@@ -15,4 +16,7 @@ import javax.inject.Singleton;
 public interface UserDao extends CrudRepository<User, Long> {
 
     User findFirstByEmail(String email);
+
+    @Query("SELECT CASE WHEN COUNT(u) > 0 THEN 'true' ELSE 'false' END FROM User u WHERE upper(u.email) = upper(?1)")
+    boolean existsByEmail(String email);
 }

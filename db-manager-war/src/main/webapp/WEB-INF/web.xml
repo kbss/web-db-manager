@@ -24,7 +24,7 @@
 
     <servlet-mapping>
         <servlet-name>JerseyApplication</servlet-name>
-        <url-pattern>/service/*</url-pattern>
+        <url-pattern>/services/*</url-pattern>
     </servlet-mapping>
 
     <context-param>

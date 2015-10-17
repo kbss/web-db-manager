@@ -8,10 +8,12 @@ import org.juke.webdb.jpa.entities.User;
 import org.juke.webdb.jpa.entities.UserToken;
 import org.juke.webdb.services.api.account.AccountService;
 import org.juke.webdb.services.api.account.PasswordService;
+import org.juke.webdb.services.exceptions.ClientException;
 import org.juke.webdb.services.exceptions.WrongCredentialException;
 import org.juke.webdb.services.validation.ValidationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -42,7 +44,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public AccountDto login(AccountDto loginDto) {
-        LOGGER.debug("Authentication user...");
+        LOGGER.debug("Authenticating user...");
         validationService.assertRequestNotEmpty(loginDto);
         validateLoginDto(loginDto);
         User user = userDao.findFirstByEmail(loginDto.getEmail());
@@ -50,7 +52,10 @@ public class AccountServiceImpl implements AccountService {
             throw new WrongCredentialException();
         }
         passwordService.validatePassword(loginDto.getPassword(), user.getPassword());
+        return authorizeUser(user);
+    }
 
+    private AccountDto authorizeUser(User user) {
         UserToken token = new UserToken();
         token.setUser(user);
         token.setToken(UUID.randomUUID().toString());
@@ -68,9 +73,19 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    @Transactional
     public AccountDto registerAccount(AccountDto loginDto) {
-        //TODO: implement
-        return null;
+        LOGGER.debug("Registering new user...");
+        validationService.assertAccountCreationDtoValid(loginDto);
+        if (userDao.existsByEmail(loginDto.getEmail())) {
+            LOGGER.debug("User with such email already exists");
+            throw new ClientException("Email taken");
+        }
+        User newUser = new User();
+        newUser.setEmail(loginDto.getEmail());
+        newUser.setPassword(passwordService.encryptPassword(loginDto.getPassword()));
+        userDao.save(newUser);
+        return authorizeUser(newUser);
     }
 
     @Override
