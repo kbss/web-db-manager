@@ -3,6 +3,7 @@ package org.juke.webdb.services.api.account;
 import org.juke.webdb.dto.AccountDto;
 import org.juke.webdb.resources.AccountResource;
 
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
@@ -14,7 +15,7 @@ import javax.inject.Singleton;
 @Singleton
 public class AccountResourceImpl implements AccountResource {
 
-    @Named
+    @Inject
     private AccountService accountService;
 
     @Override

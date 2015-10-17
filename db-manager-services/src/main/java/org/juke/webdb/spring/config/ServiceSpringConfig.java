@@ -14,5 +14,5 @@ import org.springframework.context.annotation.ImportResource;
 @ComponentScan(basePackages = {"org.juke.webdb"}, scopeResolver = org.springframework.context.annotation.Jsr330ScopeMetadataResolver.class)
 @ImportResource(value = {"classpath:spring-security.xml"})
 public class ServiceSpringConfig {
-    // TODO: add Configuration
+
 }

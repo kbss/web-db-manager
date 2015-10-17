@@ -94,6 +94,10 @@ project(':db-manager-rest') {
 
         compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: "$jerseyVersion"
         compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet-core', version: "$jerseyVersion"
+        compile("org.glassfish.jersey.ext:jersey-spring3:$jerseyVersion") {
+            exclude group: "junit"
+            exclude group: "org.springframework"
+        }
         compile group: 'org.springframework', name: 'spring-core', version: "$springVersion"
         compile group: 'org.springframework', name: 'spring-context', version: "$springVersion"
         compile group: 'org.springframework', name: 'spring-jdbc', version: "$springVersion"

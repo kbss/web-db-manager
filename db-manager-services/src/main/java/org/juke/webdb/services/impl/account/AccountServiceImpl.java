@@ -26,6 +26,7 @@ import java.util.UUID;
 @Singleton
 public class AccountServiceImpl implements AccountService {
 
+    //30 days
     private static final long TOKEN_LIFE_TIME = 1000 * 60 * 60 * 24 * 30;
 
     private final static Logger LOGGER = LoggerFactory.getLogger(AccountServiceImpl.class);
@@ -42,7 +43,6 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public AccountDto login(AccountDto loginDto) {
         LOGGER.debug("Authentication user...");
-        System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
         validationService.assertRequestNotEmpty(loginDto);
         validateLoginDto(loginDto);
         User user = userDao.findFirstByEmail(loginDto.getEmail());
@@ -56,7 +56,6 @@ public class AccountServiceImpl implements AccountService {
         token.setToken(UUID.randomUUID().toString());
         token.setExpiration(System.currentTimeMillis() + TOKEN_LIFE_TIME);
         userTokenDao.save(token);
-        //TODO: implement
         AccountDto response = new AccountDto();
         response.setToken(token.getToken());
         return response;
