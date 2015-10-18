@@ -29,6 +29,7 @@ import java.util.UUID;
 public class AccountServiceImpl implements AccountService {
 
     //30 days
+    //TODO: Implement DB property service
     private static final long TOKEN_LIFE_TIME = 1000 * 60 * 60 * 24 * 30;
 
     private final static Logger LOGGER = LoggerFactory.getLogger(AccountServiceImpl.class);
@@ -45,7 +46,6 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public AccountDto login(AccountDto loginDto) {
         LOGGER.debug("Authenticating user...");
-        validationService.assertRequestNotEmpty(loginDto);
         validateLoginDto(loginDto);
         User user = userDao.findFirstByEmail(loginDto.getEmail());
         if (user == null) {
@@ -67,6 +67,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     private void validateLoginDto(AccountDto loginDto) {
+        validationService.assertRequestNotEmpty(loginDto);
         if (StringUtils.isBlank(loginDto.getEmail()) || StringUtils.isBlank(loginDto.getPassword())) {
             throw new WrongCredentialException();
         }

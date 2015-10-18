@@ -24,9 +24,7 @@ var webApp = angular.module("webApp", ['ngRoute', 'webStorageModule', 'ngCookies
 
             });
             $rootScope.$on('$viewContentLoaded', function () {
-                //$('#login-modal').modal();
-                $rootScope.authorized = true;
-                console.log('aas');
+
             });
         }])
     .config(

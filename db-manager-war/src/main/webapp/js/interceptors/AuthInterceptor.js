@@ -12,7 +12,7 @@ webApp.factory('AuthInterceptor',
             , responseError: function (res) {
                 if (res.status == 401) {
                     //TODO: implement logout
-                    return res;
+                    return $q.reject(res);
                 }
                 return $q.reject(res);
             }

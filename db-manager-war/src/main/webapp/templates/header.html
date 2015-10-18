@@ -6,11 +6,10 @@
             <div class="loginmodal-container">
                 <h1>Login to Your Account</h1><br>
 
-                <form>
-                    <input type="text" name="user" placeholder="Username">
-                    <input type="password" name="pass" placeholder="Password">
-                    <input type="submit" name="login" class="login loginmodal-submit" value="Login"
-                           ng-click="authorized=true">
+                <form ng-submit="login()">
+                    <input type="text" name="user" ng-model="loginData.email" placeholder="Username" required>
+                    <input type="password" name="pass" ng-model="loginData.password" placeholder="Password" required>
+                    <input type="submit" name="login" class="login loginmodal-submit" value="Login">
                 </form>
 
                 <div class="login-help">

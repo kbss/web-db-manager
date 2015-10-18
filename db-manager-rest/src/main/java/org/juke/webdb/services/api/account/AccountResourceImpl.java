@@ -20,8 +20,6 @@ public class AccountResourceImpl implements AccountResource {
 
     @Override
     public AccountDto login(AccountDto loginDto) {
-        System.out.println(loginDto);
-        System.out.println(accountService);
         return accountService.login(loginDto);
     }
 
