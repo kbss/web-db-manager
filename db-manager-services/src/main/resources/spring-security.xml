@@ -22,6 +22,6 @@
         </authentication-provider>
     </authentication-manager>
     <beans:bean id="customAuthenticationEntryPoint"
-                class="org.juke.webdb.spring.config.CustomAuthenticationEntryPoint"/>
-    <beans:bean id="authenticationFilter" class="org.juke.webdb.filters.AuthenticationFilter"/>
+                class="org.kbss.webdb.spring.config.CustomAuthenticationEntryPoint"/>
+    <beans:bean id="authenticationFilter" class="org.kbss.webdb.filters.AuthenticationFilter"/>
 </beans:beans>

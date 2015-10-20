@@ -18,7 +18,7 @@ allprojects {
     apply plugin: 'eclipse'
     apply plugin: 'maven'
 
-    group = 'org.juke.webdb'
+    group = 'org.kbss.webdb'
     version = '0.1'
 }
 
