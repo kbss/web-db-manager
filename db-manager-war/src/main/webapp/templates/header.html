@@ -1,21 +1,3 @@
 <header id="header">
-    <div ng-class="{'background-blur': !authorized}" class="animate-show"></div>
-    <div class="modal-background animate-show animate-hide" tabindex="-1" aria-labelledby="myModalLabel"
-         aria-hidden="true" ng-show="!authorized">
-        <div class="modal-dialog">
-            <div class="loginmodal-container">
-                <h1>Login to Your Account</h1><br>
 
-                <form ng-submit="login()">
-                    <input type="text" name="user" ng-model="loginData.email" placeholder="Username" required>
-                    <input type="password" name="pass" ng-model="loginData.password" placeholder="Password" required>
-                    <input type="submit" name="login" class="login loginmodal-submit" value="Login">
-                </form>
-
-                <div class="login-help">
-                    <a href="#">Register</a> - <a href="#">Forgot Password</a>
-                </div>
-            </div>
-        </div>
-    </div>
 </header>

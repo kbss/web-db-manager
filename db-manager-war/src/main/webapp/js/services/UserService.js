@@ -9,6 +9,9 @@ webApp.factory('UserService',
         return userService = {
             login: function (loginData) {
                 return GenericHttpService.post('/services/account/login', loginData);
+            },
+            createAccount: function (accountModel) {
+                return GenericHttpService.post('/services/account/register', accountModel);
             }
         };
 

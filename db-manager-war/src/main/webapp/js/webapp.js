@@ -10,21 +10,21 @@ var webApp = angular.module("webApp", ['ngRoute', 'webStorageModule', 'ngCookies
         }
     ])
     .run(
-    ['$rootScope', '$location', '$log',
-        function ($rootScope, $log) {
+    ['$rootScope', '$location', '$log', '$location',
+        function ($rootScope, $log, $location) {
             $rootScope.$on("$routeChangeStart", function (event, next, current) {
-
+                console.debug("$routeChangeStart");
             });
 
             $rootScope.$on("$routeChangeError", function (event) {
-
+                console.debug("$routeChangeError");
             });
 
             $rootScope.$on("$routeChangeSuccess", function (event, next, current) {
-
+                console.debug("$routeChangeSuccess");
             });
             $rootScope.$on('$viewContentLoaded', function () {
-
+                console.debug("$viewContentLoaded");
             });
         }])
     .config(
@@ -33,6 +33,12 @@ var webApp = angular.module("webApp", ['ngRoute', 'webStorageModule', 'ngCookies
             $routeProvider.when("/", {
                 templateUrl: 'templates/home.page.html',
                 controller: 'HomeController'
+            }).when("/create-account", {
+                templateUrl: 'templates/create-account.html',
+                controller: 'CreateAccountController'
+            }).when("/login", {
+                templateUrl: 'templates/login-page.html',
+                controller: 'LoginController'
             }).when("/404", {
                 templateUrl: 'assets/templates/404.html',
                 controller: '404Controller'

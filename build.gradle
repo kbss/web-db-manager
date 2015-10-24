@@ -53,11 +53,13 @@ project(':db-manager-war') {
 
     jettyRun {
         dependsOn 'gulpBuildWithOpts'
+//        System.setProperty("webdb.env", "local")
         tasks.jettyRun.contextPath = '/'
         tasks.jettyRun.httpPort = 8080
         tasks.jettyRun.stopPort = 8081
         tasks.jettyRun.stopKey = 'stopKey'
         tasks.jettyRun.reload = 'manual'
+        webDefaultXml = file('src/test/resources/jetty-webdefault.xml')
     }
     task gulpBuildWithOpts(type: GulpTask) {
         doFirst {

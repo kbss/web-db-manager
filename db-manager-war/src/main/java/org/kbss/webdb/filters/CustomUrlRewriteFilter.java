@@ -41,7 +41,7 @@ public class CustomUrlRewriteFilter extends UrlRewriteFilter {
             LOGGER.debug("Replacing filter configuration...");
             LOGGER.debug("Using file: {}", CONFIGURATION);
             Hashtable<String, String> params = new Hashtable(2);
-            params.put("logLevel", "WARN");
+            params.put("logLevel", "sysout:DEBUG");
             params.put("confPath", CONFIGURATION);
             return new RunConfig(filterConfig.getServletContext(), params);
         }

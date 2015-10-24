@@ -122,6 +122,7 @@ gulp.task('cssmin', function () {
 
 gulp.task('watch', function () {
     gulp.watch(['../webapp/css/**'], ['cssmin']);
+    gulp.watch(['../webapp/templates/*.html'], ['minify-html']);
     gulp.watch('../webapp/js/**/*.js', ['concat-libs']);
 });
 

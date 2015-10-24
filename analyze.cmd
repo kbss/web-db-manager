@@ -1,0 +1,1 @@
+gradlew.bat -q db-manager-services:dependencies > dependencies.log
